@@ -1,0 +1,21 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+h2,
+h3 {
+  margin-bottom: 20px;
+}
+
+hr {
+  margin-top: 50px;
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  width: 100%;
+}

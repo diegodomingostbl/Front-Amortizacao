@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <h2 class="text-center">Cálculo de Amortização</h2>
+
+  <form [formGroup]="amortizationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="financedValue">Valor Financiado</label>
+      <input
+        type="number"
+        id="financedValue"
+        formControlName="financedValue"
+        class="form-control"
+        placeholder="Digite o valor financiado"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="annualInterest">Juros Anual (%)</label>
+      <input
+        type="number"
+        id="annualInterest"
+        formControlName="annualInterest"
+        class="form-control"
+        placeholder="Digite a taxa de juros anual"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="monthlyAmortization">Valor Amortizado Mensal</label>
+      <input
+        type="number"
+        id="monthlyAmortization"
+        formControlName="monthlyAmortization"
+        class="form-control"
+        placeholder="Digite o valor amortizado mensalmente"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="monthlyPayment">Valor da Parcela Mensal</label>
+      <input
+        type="number"
+        id="monthlyPayment"
+        formControlName="monthlyPayment"
+        class="form-control"
+        placeholder="Digite o valor da parcela mensal"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Calcular</button>
+  </form>
+
+  <hr class="my-5" />
+
+  <h3 class="text-center">Tabela de Amortização</h3>
+  <table class="table table-striped mt-3" *ngIf="amortizationTable.length > 0">
+    <thead>
+      <tr>
+        <th>Mês</th>
+        <th>Saldo Devedor</th>
+        <th>Parcela</th>
+        <th>Amortizado</th>
+        <th>Juros</th>
+        <th>Saldo Devedor final</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of amortizationTable">
+        <td>{{ row.month }}</td>
+        <td>
+          {{ row.initialBalance | currency : "BRL" : "symbol" : "1.2-2" }}
+        </td>
+        <td>{{ row.payment | currency : "BRL" : "symbol" : "1.2-2" }}</td>
+        <td>{{ row.amortized | currency : "BRL" : "symbol" : "1.2-2" }}</td>
+        <td>{{ row.interest | currency : "BRL" : "symbol" : "1.2-2" }}</td>
+        <td>{{ row.finalBalance | currency : "BRL" : "symbol" : "1.2-2" }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
